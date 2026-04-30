@@ -230,11 +230,13 @@ async def handle_submit(
     yield hist, st, gr.update(value="")
 
 
+# App-level kwargs that Gradio 6 expects on launch(), not on Blocks().
+LAUNCH_KWARGS: dict[str, object] = {"theme": _THEME, "css": _CSS}
+
+
 def build_demo() -> gr.Blocks:
     with gr.Blocks(
         title="Meridian Support",
-        theme=_THEME,
-        css=_CSS,
         fill_height=True,
     ) as demo:
         ctx = gr.State([])
@@ -306,7 +308,11 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO)
     get_settings()
     demo = build_demo()
-    demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", "7860")))
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=int(os.environ.get("PORT", "7860")),
+        **LAUNCH_KWARGS,
+    )
 
 
 if __name__ == "__main__":  # pragma: no cover
