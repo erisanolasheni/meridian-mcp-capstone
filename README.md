@@ -19,11 +19,21 @@ Spaces install dependencies from **`requirements.txt`** at the repo root (it inc
 
 ### Deploy from GitHub Actions → Hugging Face
 
-1. On [Hugging Face](https://huggingface.co/new-space), create a **Space** (SDK **Gradio**). Note the repo id: `YOUR_USER/YOUR_SPACE`.
+1. Create an empty **Gradio Space** (once). Repo id will be `YOUR_HF_USERNAME/meridian-mcp-capstone` if you use that name.
+   - **Web:** [Create Space](https://huggingface.co/new-space) → SDK **Gradio**, name **`meridian-mcp-capstone`** → create.
+   - **CLI:** (needs [`hf`](https://huggingface.co/docs/huggingface_hub/guides/cli) and `hf auth login`)
+
+```bash
+pip install -U "huggingface_hub>=0.23"
+hf auth login
+hf repos create YOUR_HF_USERNAME/meridian-mcp-capstone --repo-type space --space-sdk gradio --exist-ok
+```
+
+   Set **`HF_SPACE_REPO_ID`** on GitHub to **`YOUR_HF_USERNAME/meridian-mcp-capstone`** (your real Hugging Face username or org, same as in the Space URL).
 2. Create a **fine-grained** or **write** token with access to that Space ([tokens](https://huggingface.co/settings/tokens)).
 3. In your GitHub repo: **Settings → Secrets and variables → Actions**
    - **Secret:** `HF_TOKEN` — paste the Hugging Face token.
-   - **Variables:** `HF_SPACE_REPO_ID` — e.g. `YOUR_USER/YOUR_SPACE`.
+   - **Variables:** `HF_SPACE_REPO_ID` — e.g. `YOUR_HF_USERNAME/meridian-mcp-capstone`.
 4. Push to **`main`** (or run workflow **Deploy Hugging Face Space** manually). The workflow uploads **`app.py`**, **`meridian_chatbot/`**, requirements, and a Space **`README.md`** built from [`docs/hf-space-README.md`](docs/hf-space-README.md).
 
 Until `HF_TOKEN` and `HF_SPACE_REPO_ID` are set, the deploy workflow **does not run** (so CI stays green).
