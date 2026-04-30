@@ -25,3 +25,5 @@ Configure under **Settings → Secrets**:
 | `MCP_URL` | No | Defaults to the assessment MCP if unset. Use **`…/mcp`** with **no** trailing slash. |
 
 Demo/test customers (shared sandbox email / PIN pairs) are listed in the GitHub repo under **`docs/bootcamp-mcp-assessment.md`**.
+
+*Application files sync from GitHub (`main`) via CI — see the repo root README.*
