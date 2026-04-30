@@ -1,0 +1,9 @@
+# Meridian customer-support chatbot (Gradio + OpenAI + MCP). Pin mcp with inspector.
+mcp==1.27.0
+openai>=1.40.0
+# Gradio 6+ uses message-style Chatbot by default; pin major to avoid API drift on deploy.
+gradio>=6.0.0,<7.0.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# Tests (optional): pytest pytest-asyncio - install separately or use requirements-chatbot-dev.txt

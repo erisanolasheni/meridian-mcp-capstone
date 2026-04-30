@@ -1,0 +1,34 @@
+name: Chatbot tests
+
+on:
+  push:
+    paths:
+      - "app.py"
+      - "meridian_chatbot/**"
+      - "tests/**"
+      - "requirements.txt"
+      - "requirements-chatbot.txt"
+      - "requirements-chatbot-dev.txt"
+      - "pytest.ini"
+      - ".github/workflows/chatbot-ci.yml"
+  pull_request:
+    paths:
+      - "app.py"
+      - "meridian_chatbot/**"
+      - "tests/**"
+      - "requirements.txt"
+      - "requirements-chatbot.txt"
+      - "requirements-chatbot-dev.txt"
+      - "pytest.ini"
+      - ".github/workflows/chatbot-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-chatbot.txt -r requirements-chatbot-dev.txt
+      - run: pytest

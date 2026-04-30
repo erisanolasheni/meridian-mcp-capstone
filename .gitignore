@@ -1,0 +1,13 @@
+.inspect-venv/
+.vtmp/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+.env
+.env.*
+# Allow committed env template (pattern above matches `.env.example`)
+!.env.example
+.venv-chatbot/
+htmlcov/
+.coverage

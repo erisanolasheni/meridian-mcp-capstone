@@ -1,0 +1,40 @@
+name: Deploy Hugging Face Space
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app.py"
+      - "meridian_chatbot/**"
+      - "requirements.txt"
+      - "requirements-chatbot.txt"
+      - "docs/hf-space-README.md"
+      - "scripts/sync_hf_space.py"
+      - ".github/workflows/deploy-huggingface.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: huggingface-space-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Skip until GitHub Variables / Secrets are set (see README → Hugging Face deploy).
+    if: ${{ vars.HF_SPACE_REPO_ID != '' && secrets.HF_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install huggingface_hub
+        run: pip install "huggingface_hub>=0.23.0"
+
+      - name: Upload to Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE_REPO_ID: ${{ vars.HF_SPACE_REPO_ID }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: python scripts/sync_hf_space.py
