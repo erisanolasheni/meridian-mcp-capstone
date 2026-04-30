@@ -14,7 +14,6 @@ HF_README = ROOT / "docs" / "hf-space-README.md"
 ARTIFACTS = (
     "app.py",
     "requirements.txt",
-    "requirements-chatbot.txt",
     "meridian_chatbot",
 )
 

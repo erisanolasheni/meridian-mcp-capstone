@@ -1,2 +1,8 @@
-# Hugging Face Spaces installs dependencies from requirements.txt at the repo root.
--r requirements-chatbot.txt
+# Hugging Face Spaces: this file must list all packages (no -r includes).
+# The build only mounts requirements.txt; sibling files are not on that path.
+# Kept in sync with requirements-chatbot.txt for local installs.
+mcp==1.27.0
+openai>=1.40.0
+gradio>=6.0.0,<7.0.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0

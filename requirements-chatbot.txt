@@ -1,4 +1,5 @@
 # Meridian customer-support chatbot (Gradio + OpenAI + MCP). Pin mcp with inspector.
+# Root requirements.txt duplicates these lines for Hugging Face Spaces (no -r includes in Docker).
 mcp==1.27.0
 openai>=1.40.0
 # Gradio 6+ uses message-style Chatbot by default; pin major to avoid API drift on deploy.

@@ -15,7 +15,7 @@ python app.py
 
 HF Space: secrets `OPENAI_API_KEY`, optionally `LLM_BASE_URL`, `LLM_MODEL`, `MCP_URL`. Entry: `app.py` → `demo`.
 
-Spaces install dependencies from **`requirements.txt`** at the repo root (it includes **`requirements-chatbot.txt`**).
+Spaces install from **`requirements.txt`** at the repo root (self-contained, same pins as **`requirements-chatbot.txt`**; HF’s build only mounts that one file, so we don’t use `-r` there).
 
 ### Deploy from GitHub Actions → Hugging Face
 
