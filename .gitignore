@@ -11,3 +11,5 @@ __pycache__/
 .venv-chatbot/
 htmlcov/
 .coverage
+# Local-only notes (e.g. video scripts)
+temp/

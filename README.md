@@ -36,7 +36,7 @@ hf repos create YOUR_HF_USERNAME/meridian-mcp-capstone --repo-type space --space
    - **Variables:** `HF_SPACE_REPO_ID` — e.g. `YOUR_HF_USERNAME/meridian-mcp-capstone`.
 4. Push to **`main`** (or run workflow **Deploy Hugging Face Space** manually). The workflow uploads **`app.py`**, **`meridian_chatbot/`**, requirements, and a Space **`README.md`** built from [`docs/hf-space-README.md`](docs/hf-space-README.md).
 
-Until `HF_TOKEN` and `HF_SPACE_REPO_ID` are set, the deploy workflow **does not run** (so CI stays green).
+Until **`HF_SPACE_REPO_ID`** is set as a variable, the deploy job **is skipped**. Add **`HF_TOKEN`** as a secret too — without it, the job runs but **Upload to Space** fails until the token is configured.
 
 MCP URL: no trailing slash (`…/mcp`). Test users: `docs/bootcamp-mcp-assessment.md`.
 
