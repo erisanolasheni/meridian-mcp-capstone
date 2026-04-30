@@ -20,8 +20,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Skip until GitHub Variables / Secrets are set (see README → Hugging Face deploy).
-    if: ${{ vars.HF_SPACE_REPO_ID != '' && secrets.HF_TOKEN != '' }}
+    # Skip until HF_SPACE_REPO_ID is set. Job-level `if` cannot reference `secrets`
+    # (GitHub limitation); missing HF_TOKEN fails fast in scripts/sync_hf_space.py.
+    if: ${{ vars.HF_SPACE_REPO_ID != '' }}
     steps:
       - uses: actions/checkout@v4
 
